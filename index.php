@@ -67,17 +67,14 @@
                     <button onclick="fC()" class="dropbtn"><?php echo "$user"?>
                     </button>
                     <section id="myDropdown" class="dropdown-content">
-                        <a href="/web/profile.php">Профил</a>
-                        <a href="/web/hours.php">Моите часове</a>
-                        <a href="/web/settings.php">Настройки и предпочитания</a>
+                        <a href="profile.php">Профил</a>
+                        <a href="hours.php">Моите часове</a>
+                        <a href="allGroups.php">Групи</a>
+                        <a href="allSubjects.php">Предмети</a>
+                        <a href="settings.php">Настройки и предпочитания</a>
                     </section>
                 </section>
             </nav>
-
-
-
-
-
 
 
 

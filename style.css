@@ -33,7 +33,6 @@ body {
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     border-radius: 50%;
-
 }
 
 .topNavButton {
@@ -45,9 +44,8 @@ body {
 }
 
 .topNavButton:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
-
 
 .selectedButton {
     text-shadow: 0 0 15px mistyrose, 0 0 15px mistyrose, 0 0 15px mistyrose, 0 0 15px mistyrose;
@@ -65,7 +63,7 @@ body {
     margin: 1% 2% 30% 4%;
     padding: 1%;
     position: absolute;
-    overflow:hidden;
+    overflow: hidden;
     background: inherit;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
 }
@@ -77,37 +75,43 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
-  }
-  
-.dropbtn:hover, .dropbtn:focus {
-background-color: #2980B9;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980B9;
 }
 
 .dropdown {
-position: relative;
-display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
-display: none;
-position: absolute;
-background-color: #f1f1f1;
-min-width: 160px;
-overflow: auto;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: scroll;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .dropdown-content a {
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    overflow: scroll;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {
+    background-color: #ddd;
+}
 
-.show {display: block;}
+.show {
+    display: block;
+}
 
 .sideNavBar::before {
     content: "";
@@ -134,7 +138,7 @@ display: block;
 }
 
 .sideNavButton:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #pointToPoint {
@@ -149,7 +153,7 @@ display: block;
     margin: 1% 2% 30% 75%;
     padding: 1%;
     position: absolute;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 #setTime {
@@ -165,10 +169,9 @@ display: block;
     margin-left: 55%;
     padding: 1%;
     position: absolute;
-    overflow:hidden;
+    overflow: hidden;
     background: inherit;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
-
 }
 
 #setTime::before {
@@ -207,7 +210,6 @@ display: block;
     margin-bottom: 1.5vh;
 }
 
-
 .glowyBox {
     border: none;
     margin: 0 auto;
@@ -215,7 +217,10 @@ display: block;
     box-shadow: 0 0 15px mistyrose, 0 0 15px mistyrose;
 }
 
-.topNavButton:hover, .sideNavButton:hover, .coolButton:hover, #ok:hover {
+.topNavButton:hover,
+.sideNavButton:hover,
+.coolButton:hover,
+#ok:hover {
     text-shadow: 0 0 15px rgb(109, 30, 69), 0 0 15px rgb(109, 30, 69), 0 0 15px rgb(109, 30, 69), 0 0 15px rgb(109, 30, 69);
     cursor: pointer;
 }
@@ -276,8 +281,8 @@ display: block;
     line-height: 8vw;
 }
 
-
-.small-computer-room, .seminar-room {
+.small-computer-room,
+.seminar-room {
     flex-direction: row;
     width: 4vw;
     height: 8vw;
@@ -286,7 +291,10 @@ display: block;
     line-height: 8vw;
 }
 
-.big-computer-room:hover, .small-computer-room:hover, .seminar-room:hover, .lecture-room:hover {
+.big-computer-room:hover,
+.small-computer-room:hover,
+.seminar-room:hover,
+.lecture-room:hover {
     cursor: pointer!important;
 }
 
@@ -312,7 +320,6 @@ display: block;
     border: gray solid 1px;
     background-color: gray;
     margin: 0.2%;
-
 }
 
 .wc {
@@ -348,11 +355,13 @@ display: block;
     z-index: 10;
     margin: 0 25vw 0 25vw;
 }
+
 #pop-up-room-img-title {
     margin: 20% -20%;
     color: black;
     font-size: 2vw;
 }
+
 #pop-up-room-img-side-text {
     width: 25%;
     height: 30%;
@@ -360,7 +369,6 @@ display: block;
     color: black;
     font-size: 1.2vw;
     word-wrap: break-word;
-
 }
 
 .darker {
@@ -377,7 +385,7 @@ display: block;
 #x {
     font-size: 2em;
     z-index: 15;
-    color:white;
+    color: white;
     position: absolute;
     right: 1vw;
     top: 1vw;
@@ -408,6 +416,7 @@ display: block;
     border-radius: 20%;
     z-index: 10;
 }
+
 #saveRoom {
     width: 40vw;
     height: 55vh;
@@ -419,9 +428,8 @@ display: block;
     display: inline-block;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
     border-radius: 20%;
-    background-color:rgb(255, 255, 255, 0.2);
+    background-color: rgb(255, 255, 255, 0.2);
     z-index: 10;
-    
 }
 
 #saveRoom::before {
@@ -440,14 +448,13 @@ display: block;
     border-radius: 20%;
 }
 
-
 #formButtons {
     top: 87%;
     left: 33%;
     position: absolute;
 }
 
-.inputContainer > * {
+.inputContainer>* {
     margin: 1.8vh 2vw;
 }
 
@@ -455,16 +462,16 @@ display: block;
     font-size: 2vw;
 }
 
-input, select {
+input,
+select {
     border: none;
     box-shadow: 0 0 5px mistyrose;
 }
 
 #saveFromRoom {
-    
     font-size: 2em;
     z-index: 15;
-    color:white;
+    color: white;
     left: 45%;
     bottom: 7%;
     position: absolute;
@@ -482,8 +489,8 @@ input, select {
     height: 8.4vw;
 }
 
-
-.small-computer-room:hover,.seminar-room:hover {
+.small-computer-room:hover,
+.seminar-room:hover {
     width: 4.4vw;
     height: 8.4vw;
 }
@@ -500,6 +507,7 @@ input, select {
     text-shadow: 0 0 15px black;
     line-height: 8vw;
 }
+
 .warning::before {
     content: "";
     position: absolute;
@@ -510,7 +518,7 @@ input, select {
     right: 0;
     bottom: 0;
     opacity: 0.7;
-    box-shadow: inset 0 0 2000px rgb(0, 0, 0),inset 0 0 200px rgb(0, 0, 0),inset 0 0 2000px rgb(0, 0, 0),inset 0 0 2000px rgb(0, 0, 0);
+    box-shadow: inset 0 0 2000px rgb(0, 0, 0), inset 0 0 200px rgb(0, 0, 0), inset 0 0 2000px rgb(0, 0, 0), inset 0 0 2000px rgb(0, 0, 0);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     border-radius: 20%;
