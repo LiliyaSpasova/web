@@ -1,9 +1,5 @@
 <?php
 $id = $_GET['id'];
-//Connect DB
-//Create query based on the ID passed from you table
-//query : delete where Staff_id = $id
-// on success delete : redirect the page to original page using header() method
 $dbname = "schedule";
 $conn = mysqli_connect("localhost", "root", "", $dbname);
 // Check connection
