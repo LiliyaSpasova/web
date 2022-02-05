@@ -1,0 +1,51 @@
+.invalid {
+    background-color: red;
+}
+form#registration_form{
+    width: 350px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 5%;
+    display: block;
+}
+fieldset{
+    border-radius: 50px;
+    background-color: rgb(180, 237, 185);
+    padding: 25px;
+}
+body{
+    background-image: url("./img/background2.jpg");
+}
+button#registration_button{
+    margin-top: 10px;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: seashell;
+    color:  rgb(44, 148, 53);
+}
+button#registration_button:hover{
+    background-color: rgb(44, 148, 53);
+    color: seashell;
+}
+
+p#registration_form_header{
+    padding-bottom: 7px;
+    font-size: x-large;
+    border-style: none none solid none ;
+    border-color: seashell;
+    border-width: 4px;
+}
+input, select {
+    margin: 10px;
+    padding: 8px;
+    width: 250px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    border-color: lightgrey;
+}
+label {
+    display: block;
+    
+}
