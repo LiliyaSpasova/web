@@ -1,11 +1,18 @@
-<?php include('rooms.php');?>
+<?php
+    session_start();
+    include('rooms.php');
+    $user = $_SESSION['username'];
+    $id = $_SESSION['id'];
+    $sqlForNomenclatures = "SELECT s.lecturer, s.title, s.duration, s.type from `users` u join `teaches` t on u.id = t.user_id join `subjects` s on t.sub_id = s.sub_id";  
+?>
 <!DOCTYPE html5>
 <html lang = "bg">
     <head>
         <meta charset = "UTF-8">
         <title>Проект по Уеб технологии - Управление на график по етажи</title>
-        <meta name="author" content = "Антония Няголова, Яна Спасова">
+        <meta name="author" content = "Антония Няголова, Яна Спасова, продължение: Лилия Спасова, Мартин Соколов">
         <link rel = "stylesheet" href = "style.css">
+        <script src="fixCursor.js"></script>
     </head>
     <body>
         <nav id = "building-nav" class = "topNavBar">
@@ -54,37 +61,22 @@
 
 
 
+
             <nav id="pointToPoint">
-                <section class = "coolLabel">Начална точка:</section>
                 <section class="dropdown">
-                    <button class="dropbtn">ФМИ</button>
-                    <section class="dropdown-content">
-                        <section class="dropdown-content">
-                            <a href="#">link1</a>
-                        </section>
+                    <button onclick="fC()" class="dropbtn"><?php echo "$user"?>
+                    </button>
+                    <section id="myDropdown" class="dropdown-content">
+                        <a href="/proj/profile.php">Профил</a>
+                        <a href="/proj/hours.php">Моите часове</a>
+                        <a href="/proj/settings.php">Настройки и предпочитания</a>
                     </section>
                 </section>
-                
-                <section class="dropdown">
-                    <button class="dropbtn">ФХФ</button>
-                    <section class="dropdown-content">
-                        <section class="dropdown-content">
-                            <a href="#">link1</a>
-                        </section>
-                    </section>
-                </section>
-
-                <section class="dropdown">
-                    <button class="dropbtn">ФХФ</button>
-                    <section class="dropdown-content">
-                        <section class="dropdown-content">
-                            <a href="#">link1</a>
-                        </section>
-                    </section>
-                </section>
-
-                <section class = "coolLabel">Крайна точка</section>
             </nav>
+
+
+
+
 
 
 

@@ -69,58 +69,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     unset($pdo);
 }
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="">
     <style>
-    body {
-        font: 14px sans-serif;
-    }
-
-    .wrapper {
-        width: 360px;
-        padding: 20px;
-    }
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
-
 <body>
-    <div >
-        <link rel="stylesheet" href="login_style.css">
-        <form id="login_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <?php 
-            if(!empty($loginError)){
-                echo '<div class="alert alert-danger">' . $loginError . '</div>';
-            }        
-            ?>
-            <fieldset>
-                <p id="login_form_header">Вход</p>
-                <p>Моля въведете потребителското си име и парола за достъп.</p>
-                <div class="form-group">
-                    <label>Потребителско име</label>
-                    <input type="text" name="username"
-                        class="form-control <?php echo (!empty($usernameError)) ? 'invalid' : ''; ?>"
-                        value="<?php echo $username; ?>">
-                    <span class="invalid-feedback"><?php echo $usernameError; ?></span>
-                </div>
-                <div class="form-group">
-                    <label>Парола</label>
-                    <input type="password" name="password"
-                        class="form-control <?php echo (!empty($passwordError)) ? 'invalid' : ''; ?>">
-                    <span class="invalid-feedback"><?php echo $passwordError; ?></span>
-                </div>
-                <div class="form-group">
-                    <input id="login_button" type="submit" class="btn btn-primary" value="Вход" >
-                </div>
-                <p>Ако нямате акаунт,<a href="register.php">Регистрирайте се сега.</a></p>
-            </fieldset>
-        </form>
-    </div>
-</body>
+    <section class="wrapper">
+        <h2>Login</h2>
+        <p>Моля въведете потребителското си име и парола за достъп.</p>
 
+        <?php 
+        if(!empty($loginError)){
+            echo '<section class="alert alert-danger">' . $loginError . '</section>';
+        }        
+        ?>
+
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <section class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control <?php echo (!empty($usernameError)) ? 'invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <span class="invalid-feedback"><?php echo $usernameError; ?></span>
+            </section>    
+            <section class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control <?php echo (!empty($passwordError)) ? 'invalid' : ''; ?>">
+                <span class="invalid-feedback"><?php echo $passwordError; ?></span>
+            </section>
+            <section class="form-group">
+                <input type="submit" class="btn btn-primary" value="Login">
+            </section>
+            <p>Ако нямате акаунт, натиснете тук:<a href="register.php">Регистрирайте се сега.</a>.</p>
+        </form>
+    </section>
+</body>
 </html>

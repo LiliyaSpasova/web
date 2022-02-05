@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
         if(empty($usernameError) && empty($passwordError) && empty($confirmPasswordError)) {
-            $sql = "INSERT into users (username, password) values (:username, :password)";
+            $sql = "INSERT into users (username, password, role) values (:username, :password, 2)";
 
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
@@ -92,40 +92,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel = "stylesheet" href = "register_style.css">
     <title>Register</title>
 </head>
-<body >
-    <div >
-    <link rel="stylesheet" href="register_style.css" >
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
-    <fieldset>
-        <div><p id="registration_form_header">Регистрирай се тук!</p></div>
-        <div>
+<body>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="username">Потребителско име</label>
         <input type="text" name="username" id="username" class="form-control <?php echo (!empty($usernameError)) ? 'invalid' : ''; ?>" value="<?php echo $username; ?>">
-        </div>
-        <div>
-        <label for="name">Име</label>
-        <input type="text" name="name" id="name">
-        </div>
-        <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">
-        </div>
-        <div>
+
         <label for="password">Парола</label>
         <input type="password" name="password" id="password">
-        </div>
-        <div>
+
         <label for="psw-repeat">Повторете паролата</label>
         <input type="password" name="psw-repeat" id="psw-repeat">
-        </div>
-        <div>
-        <button type="submit" id ="registration_button">Регистрирай се</button>
-        </div>
-        <div>
-        <a href="login.php" > Вече имаш регистрация? Влез в профила си сега!</a>
-        </div>
-        </fieldset>
+
+        <button type="submit">Регистрирай се</button>
     </form>
-</div>
 </body>
 </html>
