@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="allSubjects.css">
+<link rel="stylesheet" href="allGroups.css">
     <div id="initialPage">
 <?php
    $servername = "localhost";

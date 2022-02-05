@@ -11,7 +11,8 @@
         <meta charset = "UTF-8">
         <title>Проект по Уеб технологии - Управление на график по етажи</title>
         <meta name="author" content = "Антония Няголова, Яна Спасова, продължение: Лилия Спасова, Мартин Соколов">
-        <link rel = "stylesheet" href = "style.css">
+        <link rel = "stylesheet" href = "style.css">  
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="fixCursor.js"></script>
     </head>
     <body>
@@ -69,12 +70,19 @@
                     <section id="myDropdown" class="dropdown-content">
                         <a href="profile.php">Профил</a>
                         <a href="hours.php">Моите часове</a>
-                        <a href="allGroups.php">Групи</a>
-                        <a href="allSubjects.php">Предмети</a>
+                        <a href="groups\allGroups.php">Групи</a>
+                        <a href="subjects\allSubjects.php">Предмети</a>
                         <a href="settings.php">Настройки и предпочитания</a>
                     </section>
-                </section>
+                </section>  
+            <a style="padding: 10px;"href="logout.php"><i style="background-color:white; padding:5px"class=material-icons>logout</i></a>
+     
             </nav>
+
+
+
+
+
 
 
 

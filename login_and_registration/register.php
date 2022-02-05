@@ -1,6 +1,5 @@
 <?php
 require_once "config.php";
-
 $username = $password = $confirmPassword =  "";
 $usernameError = $passwordError = $confirmPasswordError = "";
 
@@ -122,7 +121,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <button type="submit" id ="registration_button">Регистрирай се</button>
         </div>
         <div>
-        <a href="login.php" > Вече имаш регистрация? Влез в профила си сега!</a>
+        <a href="login.php"> Вече имаш регистрация? Влез в профила си сега!</a>
         </div>
         </fieldset>
     </form>
