@@ -1,0 +1,35 @@
+body {
+    background-image: url("../img/light_green_background.jpg");
+}
+
+.show_subjects {
+    background-color: rgba(108, 149, 185, 0.521);
+    border-radius: 50px;
+    text-align: center;
+    font-size: medium;
+    margin: 30px;
+    color: black;
+}
+
+p#new_subject_button {
+    background-color: rgba(108, 149, 185, 0.521);
+    border-radius: 50px;
+    font-size: medium;
+    margin: 30px;
+    color: bisque;
+    width: 250px;
+}
+
+td,
+tr {
+    padding: 8px;
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+table {
+    margin: 20px;
+    text-align: center;
+    border: 3px solid black;
+    font-weight: bold;
+}

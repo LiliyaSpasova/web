@@ -1,4 +1,5 @@
 <?php 
+$nameError = $typeError = $timeError = "";
     require_once "config.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(!isset($_POST)) {
@@ -68,6 +69,8 @@
     <link rel="stylesheet" href="register_style.css">
 </head>
 
+
+<link rel="stylesheet" href="forms.css" >
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
         <fieldset>

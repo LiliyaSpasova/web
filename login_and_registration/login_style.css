@@ -2,7 +2,7 @@
     background-color: red;
 }
 
-form#registration_form {
+form#login_form {
     width: 350px;
     text-align: center;
     margin: 0 auto;
@@ -17,10 +17,10 @@ fieldset {
 }
 
 body {
-    background-image: url("./img/background2.jpg");
+    background-image: url("../img/background2.jpg");
 }
 
-button#registration_button {
+input#login_button {
     margin-top: 10px;
     padding: 10px;
     padding-left: 10px;
@@ -29,12 +29,12 @@ button#registration_button {
     color: rgb(44, 148, 53);
 }
 
-button#registration_button:hover {
+input#login_button:hover {
     background-color: rgb(44, 148, 53);
     color: seashell;
 }
 
-p#registration_form_header {
+p#login_form_header {
     padding-bottom: 7px;
     font-size: x-large;
     border-style: none none solid none;
