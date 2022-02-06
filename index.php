@@ -3,7 +3,8 @@
     include('rooms.php');
     $user = $_SESSION['username'];
     $id = $_SESSION['id'];
-    $sqlForNomenclatures = "SELECT s.lecturer, s.title, s.duration, s.type from `users` u join `teaches` t on u.id = t.user_id join `subjects` s on t.sub_id = s.sub_id";  
+    $sqlForNomenclatures = "SELECT s.lecturer, s.title, s.duration, s.type from `users` u join `teaches` t on u.id = t.user_id join `subjects` s on t.sub_id = s.sub_id"; 
+    $role = $_SESSION["role"];
 ?>
 <!DOCTYPE html5>
 <html lang = "bg">

@@ -1,6 +1,6 @@
 <?php 
     $degreeError = $courseGroupError = $courseError = $groupError = $numStudentsError = "";
-    require_once "config.php";
+    require_once "../config.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(!isset($_POST)) {
             echo("data not coming through");
@@ -63,6 +63,16 @@
 </head>
 
 <body>
+    <?php
+        session_start();
+        if ($_SESSION["role"] != 0) {
+            echo '<script type="text/javascript">';
+            echo ' alert("Нямате достъп до тази страница!")';
+            echo '</script>';
+            header('Location: ../index.php');
+            exit;
+        }
+    ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
         <fieldset>
             <label for="degreeName">Име на специалност:</label>

@@ -1,6 +1,6 @@
 <?php 
-$nameError = $typeError = $timeError = "";
-    require_once "config.php";
+    $nameError = $typeError = $timeError = "";
+    require_once "../config.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(!isset($_POST)) {
             echo("data not coming through");
@@ -66,12 +66,20 @@ $nameError = $typeError = $timeError = "";
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="register_style.css">
+    <link rel="stylesheet" href="allSubjects.css">
 </head>
 
-
-<link rel="stylesheet" href="forms.css" >
 <body>
+    <?php
+        session_start();
+        if ($_SESSION["role"] != 0) {
+            echo '<script type="text/javascript">';
+            echo ' alert("Нямате достъп до тази страница!")';
+            echo '</script>';
+            header('Location: ../index.php');
+            exit;
+        }
+    ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
         <fieldset>
             <label for="subjectName">Име</label>

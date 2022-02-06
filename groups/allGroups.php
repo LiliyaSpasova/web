@@ -24,7 +24,7 @@
      die("Connection failed: " . $conn->connect_error);
    }
    
-   $sql = "SELECT groupAdm, potok,speciality,year,count FROM studentsgroups";
+   $sql = "SELECT id, groupAdm, potok, speciality, year, count FROM studentsgroups";
    $result = $conn->query($sql);
    echo "<table id=subjects_table>";
         echo "<tr>";
@@ -56,7 +56,7 @@
   
 ?> 
 
-<p style="margin: 20px; font-weight:600">Ако искате да добавите нов предмет,<a href=group.php>натиснете тук.</a></p>
+<p style="margin: 20px; font-weight:600">Ако искате да добавите нов предмет, <a href=group.php>натиснете тук.</a></p>
 </div>
 </body>
 

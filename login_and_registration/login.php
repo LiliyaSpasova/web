@@ -49,7 +49,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username;       
+                            
+                            $getRole = "SELECT role_id from users where id=:id";
+                            
+                            if($stmt = $pdo->prepare($getRole)) {
+                                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                                if($stmt->execute()) {
+                                    if($getRow = $stmt->fetch()) {
+                                        $_SESSION["role"] = $getRow["role_id"];
+                                    }
+                                }
+                            }
 
                             header("location: ..\index.php");
                         } else{

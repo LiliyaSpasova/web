@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
-$username = $password = $confirmPassword =  "";
-$usernameError = $passwordError = $confirmPasswordError = "";
+$username = $password = $confirmPassword = $name = $email = "";
+$usernameError = $passwordError = $confirmPasswordError = $nameError = $emailError = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(!isset($_POST)) {
@@ -10,9 +10,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     else {
         $username = $_POST["username"];
         $password = $_POST["password"];
+        $name = $_POST["name"];
+        $email = $_POST["email"];
         $confirmPassword = $_POST["psw-repeat"];
-
-        $usernameError = $passwordError = $confirmPasswordError = "";
 
         if (empty(trim($username))) {
             $usernameError = "Моля въведете потребителско име.";
@@ -39,10 +39,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if(empty(trim($password))){
             $passwordError = "Моля въведете парола.";     
-        } elseif(strlen(trim($_POST["password"])) < 4){
+        } elseif(strlen(trim($password)) < 4){
             $passwordError = "Паролата трябва да съдържа поне 4 символа.";
         } else{
-            $password = trim($_POST["password"]);
+            $password = trim($password);
         }
         if(empty(trim($confirmPassword))){
             $confirmPasswordError = "Моля потвърдете паролата.";     
@@ -52,9 +52,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $confirmPasswordError = "Паролите не съвпадат.";
             }
         }
+        if (empty(trim($name))) {
+            $nameError = "Името не може да бъде празно.";
+        }
+        if (empty(trim($email))) {
+            $emailError = "Полето не може да бъде празно";
+        }
 
-        if(empty($usernameError) && empty($passwordError) && empty($confirmPasswordError)) {
-            $sql = "INSERT into users (username, password) values (:username, :password)";
+        if(empty($usernameError) && empty($passwordError) && empty($confirmPasswordError) && empty($nameError) && empty($emailError)) {
+            $sql = "INSERT into users (username, password, email, role_id, name) values (:username, :password, :email, 1, :name)";
 
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
@@ -63,8 +69,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             {
                 if($stmt->execute(
                     array(":username" => $param_username,
-                        ":password" => $param_password)
-                )) {
+                        ":password" => $param_password,
+                        ":email" => $email,
+                        ":name" => $name
+                ))) {
                     header("location: login.php");
                 }
                 else {
@@ -89,7 +97,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "register_style.css">
-    <title>Register</title>
+    <title>Регистрация</title>
 </head>
 <body >
     <div >
@@ -103,19 +111,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div>
         <label for="name">Име</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name"  class="form-control <?php echo (!empty($nameError)) ? 'invalid' : ''; ?>" value="<?php echo $nameError; ?>">
         </div>
         <div>
         <label for="email">Email</label>
-        <input type="text" name="email" id="email">
+        <input type="text" name="email" id="email"  class="form-control <?php echo (!empty($emailError)) ? 'invalid' : ''; ?>" value="<?php echo $emailError; ?>">
         </div>
         <div>
         <label for="password">Парола</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password"  class="form-control <?php echo (!empty($passwordError)) ? 'invalid' : ''; ?>" value="<?php echo $passwordError; ?>">
         </div>
         <div>
         <label for="psw-repeat">Повторете паролата</label>
-        <input type="password" name="psw-repeat" id="psw-repeat">
+        <input type="password" name="psw-repeat" id="psw-repeat"  class="form-control <?php echo (!empty($confirmPasswordError)) ? 'invalid' : ''; ?>" value="<?php echo $confirmPasswordError; ?>">
         </div>
         <div>
         <button type="submit" id ="registration_button">Регистрирай се</button>
