@@ -59,21 +59,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="register_style.css">
+    <link rel="stylesheet" href="allGroups.css">
 </head>
 
 <body>
-    <?php
-        session_start();
-        if ($_SESSION["role"] != 0) {
-            echo '<script type="text/javascript">';
-            echo ' alert("Нямате достъп до тази страница!")';
-            echo '</script>';
-            header('Location: ../index.php');
-            exit;
-        }
-    ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
+    
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="add_group">
         <fieldset>
             <label for="degreeName">Име на специалност:</label>
             <input type="text" id="degreeName" name="degreeName" class="form-control <?php echo (!empty($degreeError)) ? 'invalid' : ''; ?>" value="<?php echo $degreeError; ?>">
@@ -81,7 +72,7 @@
             <input type="number" id="course" name="course" min="1" max="4" class="form-control <?php echo (!empty($courseError)) ? 'invalid' : ''; ?>" value="<?php echo $courseError; ?>">
             <label for="courseGroup">Поток</label>
             <select id="courseGroup" name="courseGroup" class="form-control <?php echo (!empty($courseGroupError)) ? 'invalid' : ''; ?>" value="<?php echo $courseGroupError; ?>">
-                <option value="none">Изберете потока, от който сте:</option>
+                <option value="none" style="display: none">Изберете потока, от който сте:</option>
                 <option value="1">Първи</option>
                 <option value="2">Втори</option>
             </select>
@@ -89,7 +80,7 @@
             <input type="number" id="group" name="group" min="1" max="8" class="form-control <?php echo (!empty($groupError)) ? 'invalid' : ''; ?>" value="<?php echo $groupError; ?>">
             <label for="group">Приблизителен брой студенти:</label>
             <select id="numStudents" name="numStudents" class="form-control <?php echo (!empty($numStudentsError)) ? 'invalid' : ''; ?>" value="<?php echo $numStudentsError; ?>">
-                <option value="none">Изберете едно</option>
+                <option value="none" style="display:none">Изберете едно</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>

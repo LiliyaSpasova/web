@@ -88,7 +88,7 @@
             <input type="number" id="duration" name="duration" min="1" max="5" class="form-control <?php echo (!empty($timeError)) ? 'invalid' : ''; ?>" value="<?php echo $timeError; ?>">
             <label for="subjectType">Вид на урока</label>
             <select id="subjectType" name="subjectType" class="form-control <?php echo (!empty($typeError)) ? 'invalid' : ''; ?>" value="<?php echo $typeError; ?>">
-                <option value="none">Изберете един от видовете:</option>
+                <option value="none" style="display: none">Изберете един от видовете:</option>
                 <option value="л">Лекция</option>
                 <option value="у">Упражнение</option>
                 <option value="с">Семинар</option>
