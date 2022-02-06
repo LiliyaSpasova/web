@@ -2,15 +2,16 @@
 <html>
 <head>
 <title>Title of the document</title>
-</head>
-
-<body>
-    
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="allGroups.css">
-    <div id="initialPage">
+</head>
+
+<body id="show_all_groups">
+    
+
+    
 <?php
    $servername = "localhost";
    $username = "root";
@@ -57,7 +58,7 @@
 ?> 
 
 <p style="margin: 20px; font-weight:600">Ако искате да добавите нов предмет, <a href=group.php>натиснете тук.</a></p>
-</div>
+
 </body>
 
 </html>

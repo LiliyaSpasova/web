@@ -70,7 +70,7 @@
                     </button>
                     <section id="myDropdown" class="dropdown-content">
                         <a href="profile.php">Профил</a>
-                        <a href="hours.php">Моите часове</a>
+                        <a href="hours\hours.php">Моите часове</a>
                         <a href="groups\allGroups.php">Групи</a>
                         <a href="subjects\allSubjects.php">Предмети</a>
                         <a href="settings.php">Настройки и предпочитания</a>
