@@ -24,12 +24,13 @@
      die("Connection failed: " . $conn->connect_error);
    }
    
-   $sql = "SELECT subject_id, subject_name,duration,computers,whiteboard,projector, type FROM subjects";
+   $sql = "SELECT subject_id,subject_name,duration,computers,whiteboard,projector, type FROM subjects";
    $result = $conn->query($sql);
    echo "<table id=subjects_table>";
         echo "<tr>";
         echo "<td>ИД</td>";
         echo "<td>Име</td>";
+        echo "<td>Тип</td>";
         echo "<td>Продължителност</td>";
         echo "<td>Необходими ли са компютри?";
         echo "<td>Необходима ли е бяла дъска?";
@@ -42,6 +43,7 @@
         echo "<tr>";
         echo "<td>$row[subject_id]</td>";
         echo "<td>$row[subject_name]</td>";
+        echo "<td>$row[type]</td>";
         echo "<td>$row[duration]</td>";
         echo "<td>$row[computers]";
         echo "<td>$row[whiteboard]";

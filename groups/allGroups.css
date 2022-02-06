@@ -1,5 +1,9 @@
-body {
+body#show_all_groups {
     background-image: url("../img/light_green_background.jpg");
+}
+
+body#add_group {
+    background-image: url("../img/background3.jpg");
 }
 
 .show_subjects {
@@ -33,10 +37,42 @@ table {
     border: 3px solid black;
     font-weight: bold;
 }
+
+.addGroupForm {
+    width: 350px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 5%;
+    display: block;
+}
+
 form#add_group {
     width: 350px;
     text-align: center;
     margin: 0 auto;
     margin-top: 5%;
     display: block;
+}
+
+fieldset {
+    border-radius: 50px;
+    background-color: rgba(129, 176, 204, 0.582);
+    padding: 25px;
+}
+
+input {
+    width: 100px;
+    margin: 5px;
+}
+
+label {
+    margin: 5px;
+    display: block;
+}
+
+input#submit_button {
+    width: 150px;
+    font-size: large;
+    margin: 10px;
+    margin-top: 30px;
 }

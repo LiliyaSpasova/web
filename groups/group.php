@@ -66,18 +66,27 @@
     
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="add_group">
         <fieldset>
+            <section>
             <label for="degreeName">Име на специалност:</label>
             <input type="text" id="degreeName" name="degreeName" class="form-control <?php echo (!empty($degreeError)) ? 'invalid' : ''; ?>" value="<?php echo $degreeError; ?>">
+            </section>
             <label for="course">Курс (от 1-ви до 4-ти)</label>
+            <section>
             <input type="number" id="course" name="course" min="1" max="4" class="form-control <?php echo (!empty($courseError)) ? 'invalid' : ''; ?>" value="<?php echo $courseError; ?>">
             <label for="courseGroup">Поток</label>
+            </section>
+            <section>
             <select id="courseGroup" name="courseGroup" class="form-control <?php echo (!empty($courseGroupError)) ? 'invalid' : ''; ?>" value="<?php echo $courseGroupError; ?>">
                 <option value="none" style="display: none">Изберете потока, от който сте:</option>
                 <option value="1">Първи</option>
                 <option value="2">Втори</option>
             </select>
+            </section>
+            <section>
             <label for="group">Група:</label>
             <input type="number" id="group" name="group" min="1" max="8" class="form-control <?php echo (!empty($groupError)) ? 'invalid' : ''; ?>" value="<?php echo $groupError; ?>">
+            </section>
+            <section>
             <label for="group">Приблизителен брой студенти:</label>
             <select id="numStudents" name="numStudents" class="form-control <?php echo (!empty($numStudentsError)) ? 'invalid' : ''; ?>" value="<?php echo $numStudentsError; ?>">
                 <option value="none" style="display:none">Изберете едно</option>
@@ -92,7 +101,8 @@
                 <option value="90">90</option>
                 <option value="100">100</option>
             </select>
-            <input type="submit">
+            </section>
+            <input id="submit_button" type="submit" value="Запиши">
         </fieldset>
     </form>
 

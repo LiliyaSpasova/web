@@ -69,7 +69,7 @@
     <link rel="stylesheet" href="allSubjects.css">
 </head>
 
-<body>
+<body id="add_subject">
     <?php
         session_start();
         if ($_SESSION["role"] != 0) {
@@ -80,7 +80,7 @@
             exit;
         }
     ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
+    <form id="add_subject" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
         <fieldset>
             <label for="subjectName">Име</label>
             <input type="text" id="subjectName" name="subjectName" class="form-control <?php echo (!empty($nameError)) ? 'invalid' : ''; ?>" value="<?php echo $nameError; ?>">
@@ -99,7 +99,7 @@
             <label for="whiteboard">Нужна ли е дъска</label><br>
             <input type="checkbox" id="projector" name="projector" value="Projector">
             <label for="projector">Нужен ли е прожектор</label>
-            <input type="submit">
+            <input id="submit_button" type="submit" value="Запиши">
         </fieldset>
     </form>
 

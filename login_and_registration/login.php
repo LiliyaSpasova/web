@@ -88,6 +88,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="login_style.css">
+
     <style>
     body {
         font: 14px sans-serif;
@@ -101,8 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body>
-    <div >
-        <link rel="stylesheet" href="login_style.css">
+    <div>
         <form id="login_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <?php 
             if(!empty($loginError)){
