@@ -45,6 +45,7 @@
                         echo '<script type="text/javascript">';
                         echo ' alert("Курсът е успешно записан!")';
                         echo '</script>';
+                        header("location: allGroups.php");
                     }
                     else {
                         echo ("Нещо се обърка. Моля опитайте по-късно.");
@@ -62,7 +63,7 @@
     <link rel="stylesheet" href="allGroups.css">
 </head>
 
-<body>
+<body id ="add_group">
     
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="add_group">
         <fieldset>

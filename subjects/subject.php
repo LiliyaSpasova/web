@@ -52,6 +52,7 @@
                         echo '<script type="text/javascript">';
                         echo ' alert("Предметът е успешно записан!")';
                         echo '</script>';
+                        header("location: allSubjects.php");
                     }
                     else {
                         echo ("Нещо се обърка. Моля опитайте по-късно.");

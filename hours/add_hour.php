@@ -1,6 +1,5 @@
 <?php
     $nameError = "";
-    require_once("config.php");
     session_start();
     $servername = "localhost";
     $username = "root";
@@ -43,7 +42,7 @@
 
 <?php
     $groupError = $subjectError = "";
-    require_once("config.php");
+    require_once("../config.php");
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(!isset($_POST)) {
             echo("data not coming through");
@@ -67,6 +66,7 @@
                     echo '<script type="text/javascript">';
                     echo ' alert("Заявката е успешна!")';
                     echo '</script>';
+                    header("location: hours.php");
                 }
                 else {
                     echo ("Нещо се обърка. Моля опитайте по-късно.");

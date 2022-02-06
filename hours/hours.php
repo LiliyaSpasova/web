@@ -28,7 +28,7 @@
      die("Connection failed: " . $conn->connect_error);
    }
    
-   $sql = "SELECT sub_id,group_id  FROM teaches where user_id=$i";
+   $sql = "SELECT sub_id, group_id  FROM teaches where user_id=$userId";
    $result = $conn->query($sql);
    echo "<table >";
         echo "<tr>";
@@ -66,7 +66,7 @@
   
 ?> 
 
-<p style="margin: 20px; font-weight:600">Ако искате да добавите нов елемент,<a href=subject.php>натиснете тук.</a></p>
+<p style="margin: 20px; font-weight:600">Ако искате да добавите нов елемент,<a href=add_hour.php>натиснете тук.</a></p>
 </div>
 </body>
 
