@@ -81,7 +81,7 @@
             exit;
         }
     ?>
-    <form id="add_subject" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
+    <form id="add_subject" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <fieldset>
             <label for="subjectName">Име</label>
             <input type="text" id="subjectName" name="subjectName" class="form-control <?php echo (!empty($nameError)) ? 'invalid' : ''; ?>" value="<?php echo $nameError; ?>">

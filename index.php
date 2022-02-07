@@ -77,7 +77,7 @@
                     </section>
                 </section>  
             <a style="padding: 10px;"href="logout.php"><i style="background-color:white; padding:5px"class=material-icons>logout</i></a>
-     
+            <a style="padding: 10px;"href="importStudents.php"><i style="background-color:white; padding:5px"class=material-icons>attachment</i></a>
             </nav>
 
 
@@ -125,8 +125,9 @@
                     <section class = "inputContainer">
                         <input id = "speciality" type = "text" name = "speciality" placeholder = "Специалност"> 
                         <input id = "year" type = "text" name = "year" placeholder = "Курс"> 
-                        <input id = "groupAdm" type = "text" name = "groupAdm" placeholder = "Група">  
-                        
+                        <input id = "groupAdm" type = "text" name = "groupAdm" placeholder = "Група">
+                        <input id = "exam" type="checkbox" name="exam">
+                        <label for="exam">За изпит ли запазвате залата?</label>
                     </section>
                     <section id = "formButtons">
                         <section id = "saveForm" class = "coolButton selectedButton">Запази зала</section>
