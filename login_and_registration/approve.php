@@ -1,12 +1,23 @@
 <?php
 $hash = $_GET['h'];
-$email = $_GET['e'];
+$user = $_GET['e'];
 
 if($hash == hash('sha512', 'ACCEPT')){
 
-  //ACCESS MYSQL DATABASE
-  //FIND THE USER AND SET user_approved = 1
-  //WHERE email = $email
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "schedule";
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    $sql = "UPDATE users SET is_approved=true WHERE username = '$user'";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
+      } else {
+        echo "Error updating record: " . $conn->error;
+      }
+      
+      $conn->close();
 
 }else if($hash == hash('sha512', 'DECLINE')){
 
