@@ -57,7 +57,7 @@
   
 ?> 
 
-<p style="margin: 20px; font-weight:600">Ако искате да добавите нов предмет, <a href=group.php>натиснете тук.</a></p>
+<p style="margin: 20px; font-weight:600">Ако искате да добавите нова група, <a href=group.php>натиснете тук.</a></p>
 
 </body>
 

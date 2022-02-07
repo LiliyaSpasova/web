@@ -1,4 +1,9 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'C:\xampp\htdocs\web_project\PHPMailer-master\src\Exception.php';
+require 'C:\xampp\htdocs\web_project\PHPMailer-master\src\PHPMailer.php';
+require 'C:\xampp\htdocs\web_project\PHPMailer-master\src\SMTP.php';
 require_once "config.php";
 $username = $password = $confirmPassword = $name = $email = "";
 $usernameError = $passwordError = $confirmPasswordError = $nameError = $emailError = "";
@@ -60,18 +65,56 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
         if(empty($usernameError) && empty($passwordError) && empty($confirmPasswordError) && empty($nameError) && empty($emailError)) {
-            $sql = "INSERT into users (username, password, email, role_id, name) values (:username, :password, :email, 1, :name)";
+            $sql = "INSERT into users (username, password, email, role_id, name,is_approved) values (:username, :password, :email, 1, :name,:is_approved)";
 
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
+
+            $accept_link = "localhost/login_and_registration/approve.php?e=" . $email . "&h=" . hash('sha512', 'ACCEPT');
+            $decline_link = "localhost/login_and_registration/approve.php?e="  . $email . "&h=" . hash('sha512', 'DECLINE');
+
+            $to = 'liliya.nspasova@gmail.com';
+            $subject = 'User needs approval';
+            $message = 'The user'. $param_username. ' needs your approval' .
+            '----------------------------------- ' . "\r\n" .
+            'Accept: ' . $accept_link . "\r\n" .
+            'Decline: ' . $decline_link . "\r\n";
+    
+            mail($to, $subject, $message); // Send the email
             
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->Mailer = "smtp";
+            $mail->SMTPDebug  = 1;  
+            $mail->SMTPAuth   = TRUE;
+            $mail->SMTPSecure = "tls";
+            $mail->Port       = 587;
+            $mail->Host       = "smtp.gmail.com";
+            $mail->Username   = "emailapprovalswebproject@gmail.com";
+            $mail->Password   = "dveteBubi1";
+            $mail->IsHTML(true);
+            $mail->AddAddress("lilly_spasova@abv.bg", "Liliya");
+            $mail->SetFrom("emailapprovalswebproject@gmail.com", "Web project");
+            $mail->Subject = "User needs approval";
+            $content = "The user'. $param_username. ' needs your approval" .
+            '----------------------------------- ' . "\r\n" .
+            'Accept: ' . $accept_link . "\r\n" .
+            'Decline: ' . $decline_link . "\r\n";
+            $mail->MsgHTML($content); 
+            if(!$mail->Send()) {
+            echo "Error while sending Email.";
+            var_dump($mail);
+            } else {
+            echo "Email sent successfully";
+            }
             if($stmt = $pdo->prepare($sql))
             {
                 if($stmt->execute(
                     array(":username" => $param_username,
                         ":password" => $param_password,
                         ":email" => $email,
-                        ":name" => $name
+                        ":name" => $name,
+                        ":is_approved" => false
                 ))) {
                     header("location: login.php");
                 }
