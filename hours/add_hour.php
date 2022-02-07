@@ -85,10 +85,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добавяне на час</title>
+    
+    <link rel="stylesheet" href="../groups/allGroups.css">
 </head>
 
-<body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<body id="add_hour">
+    <form id="add_hour"action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <fieldset>
         <label for="name">Вашето име:</label>
         <input type="text" id="name" name="name" value=<?php echo $name ?> disabled>
         <label for="subject">Изберете предмет и тип урок</label>
@@ -109,6 +112,7 @@
                 }
             ?>
         </select>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" id="submit_button">
+        </fieldset>
     </form>
 </body>

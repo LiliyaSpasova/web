@@ -169,10 +169,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добавяне на студенти</title>
+    
+    <link rel="stylesheet" href="import.css">
 </head>
 
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+    <fieldset>
         <label for="group">Изберете специалност и група, в която искате да сложите студентите</label>
         <select id="group" name="group" class="form-control <?php echo (!empty($groupError)) ? 'invalid' : ''; ?>" value="<?php echo $groupError; ?>">
             <option selected="selected" value="none" style="display: none">Изберете едно:</option>
@@ -184,7 +187,9 @@
         </select>
         <label for="inp">Файл, от който ще се сложат студентите</label>
         <input type="file" name="inp" id="inp" value="" class="form-control <?php echo (!empty($fileError)) ? 'invalid' : ''; ?>" value="<?php echo $fileError; ?>">
+            </br>
         <input type="submit" value="Submit">
+        </fieldset>
     </form>
 </body>
 </html>

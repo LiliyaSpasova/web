@@ -1,13 +1,5 @@
-body#show_all_groups {
-    background-image: url("../img/light_green_background.jpg");
-}
-
-body#add_group {
-    background-image: url("../img/background3.jpg");
-}
-
-body#add_hour {
-    background-image: url("../img/background3.jpg");
+body {
+    background-image: url("img/light_green_background.jpg");
 }
 
 .show_subjects {
@@ -42,23 +34,7 @@ table {
     font-weight: bold;
 }
 
-.addGroupForm {
-    width: 350px;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 5%;
-    display: block;
-}
-
-form#add_group {
-    width: 350px;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 5%;
-    display: block;
-}
-
-form#add_hour {
+form {
     width: 350px;
     text-align: center;
     margin: 0 auto;
