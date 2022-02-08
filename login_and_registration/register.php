@@ -69,19 +69,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
-
-            $accept_link = "localhost/login_and_registration/approve.php?e=" . $email . "&h=" . hash('sha512', 'ACCEPT');
-            $decline_link = "localhost/login_and_registration/approve.php?e="  . $email . "&h=" . hash('sha512', 'DECLINE');
-
-            $to = 'liliya.nspasova@gmail.com';
-            $subject = 'User needs approval';
-            $message = 'The user'. $param_username. ' needs your approval' .
-            '----------------------------------- ' . "\r\n" .
-            'Accept: ' . $accept_link . "\r\n" .
-            'Decline: ' . $decline_link . "\r\n";
-    
-            mail($to, $subject, $message); // Send the email
-            
+            $accept_link = "localhost:8080/web_project/login_and_registration/approve.php?e=" . $username . "&h=" . hash('sha512', 'ACCEPT');
+            $decline_link = "localhost:8080/web_project/login_and_registration/approve.php?e="  . $username . "&h=" . hash('sha512', 'DECLINE');
             $mail = new PHPMailer();
             $mail->IsSMTP();
             $mail->Mailer = "smtp";
@@ -92,14 +81,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $mail->Host       = "smtp.gmail.com";
             $mail->Username   = "emailapprovalswebproject@gmail.com";
             $mail->Password   = "dveteBubi1";
-            $mail->IsHTML(true);
+            $mail->IsHTML(false);
             $mail->AddAddress("lilly_spasova@abv.bg", "Liliya");
             $mail->SetFrom("emailapprovalswebproject@gmail.com", "Web project");
             $mail->Subject = "User needs approval";
             $content = "The user'. $param_username. ' needs your approval" .
             '----------------------------------- ' . "\r\n" .
-            'Accept: ' . $accept_link . "\r\n" .
-            'Decline: ' . $decline_link . "\r\n";
+            'Accept:  ' . $accept_link . "\r\n" .
             $mail->MsgHTML($content); 
             if(!$mail->Send()) {
             echo "Error while sending Email.";
