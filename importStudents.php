@@ -31,6 +31,8 @@
                 $username = strtolower($username);
                 $name = $val[0];
                 $email = $username . "@uni-sofia.bg";
+                echo $username;
+                echo $val[2];
                 $password = password_hash($val[2], PASSWORD_DEFAULT);
                 array_push($all_data, [$username, $password, $email, $name]);
             }
@@ -153,7 +155,6 @@
 
             if (move_uploaded_file($_FILES["inp"]["tmp_name"], $target_file)) {
                 $arr = import($target_file);
-                var_dump($arr);
                 $getData = getStudentData($arr);
                 inputAccounts($getData, $groupId); 
                 unlink($target_file);

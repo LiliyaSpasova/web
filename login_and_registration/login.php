@@ -2,7 +2,10 @@
 session_start();
  
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ..\index.php");
+    if ($_SESSION["role"] == 1 || $_SESSION["role"] == 0)
+        header("location: ..\index.php");
+    else 
+        header("location: ..\indexStudent.php");
     exit;
 }
  
@@ -30,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if(empty($usernameError) && empty($passwordError)){
 
-        $sql = "SELECT id, username, password FROM users WHERE username = :username";
+        $sql = "SELECT id, username, password, role_id FROM users WHERE username = :username";
         
         if($stmt = $pdo->prepare($sql)){
 
@@ -44,31 +47,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $id = $row["id"];
                         $username = $row["username"];
                         $hashed_password = $row["password"];
+                        $role = $row["role_id"];
                         if(password_verify($password, $hashed_password)){
                             session_start();
                             
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;       
-                            
-                            $getRole = "SELECT role_id from users where id=:id";
-                            
-                            if($stmt = $pdo->prepare($getRole)) {
-                                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-                                if($stmt->execute()) {
-                                    if($getRow = $stmt->fetch()) {
-                                        $_SESSION["role"] = $getRow["role_id"];
-                                    }
-                                }
+                            $_SESSION["role"] = $role;
+
+                            if ($_SESSION["role"] == 0 || $_SESSION["role"] == 1) {
+                                header("location: ..\index.php");
+                            }
+                            else {
+                                header("location: ..\indexStudent.php");
                             }
 
-                            header("location: ..\index.php");
                         } else{
-                            $loginError = "Невалидно потребителско име или парола.";
+                            $loginError = "asd.";
                         }
                     }
                 } else{
-                    $loginError = "Невалидно потребителско име или парола.";
+                    $loginError = "bsd.";
                 }
             } else{
                 echo "Грешката е при нас. Моля опитайте по-късно.";

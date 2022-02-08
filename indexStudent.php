@@ -1,9 +1,6 @@
 <?php
     session_start();
     include('rooms.php');
-    if (!isset($_SESSION["username"])) {
-        die("Опитвате се да влезете след като сте излезли от друг профил");
-    }
     $user = $_SESSION['username'];
     $id = $_SESSION['id'];
     $sqlForNomenclatures = "SELECT s.lecturer, s.title, s.duration, s.type from `users` u join `teaches` t on u.id = t.user_id join `subjects` s on t.sub_id = s.sub_id"; 
@@ -58,7 +55,6 @@
                 <section class = "coolLabel">Час:</section>
                 <input id = "timeInput" type = "time" class = "glowyBox">
                 <section id = "checkAvailability" class = "coolButton selectedButton">Виж заетост</section>
-                <section id = "openForm" class = "coolButton selectedButton">Запази зала</section>
             </nav>
             <figure id = "map">
             </figure>
@@ -73,14 +69,10 @@
                     </button>
                     <section id="myDropdown" class="dropdown-content">
                         <a href="profile.php">Профил</a>
-                        <a href="hours\hours.php">Моите часове</a>
-                        <a href="groups\allGroups.php">Групи</a>
-                        <a href="subjects\allSubjects.php">Предмети</a>
-                        <a href="settings.php">Настройки и предпочитания</a>
+                        <a href="studentHours.php">Моите часове</a>
                     </section>
                 </section>  
             <a style="padding: 10px;"href="logout.php"><i style="background-color:white; padding:5px"class=material-icons>logout</i></a>
-            <a style="padding: 10px;"href="importStudents.php"><i style="background-color:white; padding:5px"class=material-icons>attachment</i></a>
             </nav>
 
 
@@ -96,48 +88,9 @@
                     <section id = "pop-up-room-img-title"></section>
                     <section id = "pop-up-room-img-side-text"></section>
                 </section>
-                <section id = "saveFromRoom">Запази зала</section>
                 <section id = "x">X</section>
             </figure>
-            <section id = 'formContainer' class = 'hidden'>
-                <section class = "darker"></section>
-                <section id = "formBackground"></section>
-                <form id = "saveRoom" method = post name = "saveRoom" action = "room.php">  
-                    <section class = "coolLabel biggerTitle">Запази стая:</section>
-                    <section class = "inputContainer">
-                        <input id = "building" type="text" name = "building" placeholder = "Сграда">  
-                        <input id = "floor" type="text" name = "floor" placeholder = "Етаж">
-                        <input id = "room" type="text" name = "room" placeholder = "Стая">
-                    </section>
-                    <section class = "inputContainer">
-                        <input id = "saveDate" type="date" name = "day">  
-                        <input id = "saveTime" type="time" name = "time">
-                    </section>
-                    <section class = "inputContainer">
-                        <input id = "duration" type="number" name = "duration" placeholder = "Продължителност">  
-                    </section>
-                    <section class = "inputContainer">
-                        <input id = "lecturerName" type = "text" name = "lecturerName" placeholder = "Преподавател"> 
-                        <input id = "subjectTitle" type = "text" name = "subjectTitle" placeholder = "Предмет"> 
-                        <select id = "courseType" type = "text" name = "courseType">  
-                            <option value = "с">семинар</option> 
-                            <option value = "л">лекция</option> 
-                            <option value = "п">практикум</option> 
-                        </select>
-                    </section>
-                    <section class = "inputContainer">
-                        <input id = "speciality" type = "text" name = "speciality" placeholder = "Специалност"> 
-                        <input id = "year" type = "text" name = "year" placeholder = "Курс"> 
-                        <input id = "groupAdm" type = "text" name = "groupAdm" placeholder = "Група">
-                        <input id = "exam" type="checkbox" name="exam">
-                        <label for="exam">За изпит ли запазвате залата?</label>
-                    </section>
-                    <section id = "formButtons">
-                        <section id = "saveForm" class = "coolButton selectedButton">Запази зала</section>
-                        <section id = "closeForm" class = "coolButton selectedButton">Отказ</section>
-                    </section>
-                </form>
-            </section>
+           
         </main>
 
         <!--<script src = "./js/code.js"></script>-->
