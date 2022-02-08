@@ -1,5 +1,6 @@
 <?php
-$id = $_GET['id'];
+$sub_id = $_GET['sub_id'];
+$group_id = $_GET['group_id'];
 //Connect DB
 //Create query based on the ID passed from you table
 //query : delete where Staff_id = $id
@@ -12,11 +13,11 @@ if (!$conn) {
 }
 
 // sql to delete a record
-$sql = "DELETE FROM subjects WHERE subject_id = $id"; 
+$sql = "DELETE FROM teaches WHERE sub_id = $sub_id AND group_id=$group_id"; 
 
 if (mysqli_query($conn, $sql)) {
     mysqli_close($conn);
-    header('Location: allSubjects.php'); //If book.php is your main page where you list your all records
+    header('Location: hours.php'); //If book.php is your main page where you list your all records
     exit;
 } else {
     echo "Error deleting record";

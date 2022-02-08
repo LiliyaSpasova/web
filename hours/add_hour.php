@@ -91,6 +91,16 @@
 
 <body id="add_hour">
     <form id="add_hour"action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <?php if ($groupError != ''): ?>
+            <p style="color: red;">
+            <?php echo $groupError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($subjectError != ''): ?>
+            <p style="color: red;">
+            <?php echo $subjectError; ?>
+            </p>
+            <?php endif; ?>
     <fieldset>
         <label for="name">Вашето име:</label>
         <input type="text" id="name" name="name" value=<?php echo $name ?> disabled>

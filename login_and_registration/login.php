@@ -104,11 +104,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <div>
         <form id="login_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <?php 
-            if(!empty($loginError)){
-                echo '<div class="alert alert-danger">' . $loginError . '</div>';
-            }        
-            ?>
+            <?php if ($usernameError != ''): ?>
+            <p style="color: red;">
+            <?php echo $usernameError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($passwordError != ''): ?>
+            <p style="color: red;">
+            <?php echo $passwordError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($loginError != ''): ?>
+            <p style="color: red;">
+            <?php echo $loginError; ?>
+            </p>
+            <?php endif; ?>
             <fieldset>
                 <p id="login_form_header">Вход</p>
                 <p>Моля въведете потребителското си име и парола за достъп.</p>

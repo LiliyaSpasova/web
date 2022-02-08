@@ -64,8 +64,32 @@
 </head>
 
 <body id ="add_group">
-    
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="add_group">
+    <?php if ($degreeError != ''): ?>
+            <p style="color: red;">
+            <?php echo $degreeError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($courseGroupError != ''): ?>
+            <p style="color: red;">
+            <?php echo $courseGroupError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($courseError != ''): ?>
+            <p style="color: red;">
+            <?php echo $courseError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($groupError != ''): ?>
+            <p style="color: groupError;">
+            <?php echo $groupError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($numStudentsError != ''): ?>
+            <p style="color: red;">
+            <?php echo $numStudentsError; ?>
+            </p>
+            <?php endif; ?>
         <fieldset>
             <section>
             <label for="degreeName">Име на специалност:</label>

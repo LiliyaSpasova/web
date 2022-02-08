@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $mail->Subject = "User needs approval";
             $content = "The user'. $param_username. ' needs your approval" .
             '----------------------------------- ' . "\r\n" .
-            'Accept:  ' . $accept_link . "\r\n" .
+            'Accept:  ' . $accept_link . "\r\n" ;
             $mail->MsgHTML($content); 
             if(!$mail->Send()) {
             echo "Error while sending Email.";
@@ -135,26 +135,51 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="register_style.css" >
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="registration_form">
     <fieldset>
+    <?php if ($passwordError != ''): ?>
+        <p style="color: red;">
+        <?php echo $passwordError; ?>
+        </p>
+        <?php endif; ?>
+        <?php if ($usernameError != ''): ?>
+        <p style="color: red;">
+        <?php echo $usernameError; ?>
+        </p>
+        <?php endif; ?>
+        <?php if ($confirmPasswordError != ''): ?>
+        <p style="color: red;">
+        <?php echo $confirmPasswordError; ?>
+        </p>
+        <?php endif; ?>
+        <?php if ($nameError != ''): ?>
+        <p style="color: red;">
+        <?php echo $nameError; ?>
+        </p>
+        <?php endif; ?>
+        <?php if ($emailError != ''): ?>
+        <p style="color: red;">
+        <?php echo $emailError; ?>
+        </p>
+        <?php endif; ?>
         <div><p id="registration_form_header">Регистрирай се тук!</p></div>
         <div>
         <label for="username">Потребителско име</label>
-        <input type="text" name="username" id="username" class="form-control <?php echo (!empty($usernameError)) ? 'invalid' : ''; ?>" value="<?php echo $username; ?>">
+        <input type="text" name="username" id="username" class="form-control " value="<?php echo $username; ?>">
         </div>
         <div>
         <label for="name">Име</label>
-        <input type="text" name="name" id="name"  class="form-control <?php echo (!empty($nameError)) ? 'invalid' : ''; ?>" value="<?php echo $nameError; ?>">
+        <input type="text" name="name" id="name"  class="form-control " value="<?php echo $nameError; ?>">
         </div>
         <div>
         <label for="email">Email</label>
-        <input type="text" name="email" id="email"  class="form-control <?php echo (!empty($emailError)) ? 'invalid' : ''; ?>" value="<?php echo $emailError; ?>">
+        <input type="text" name="email" id="email"  class="form-control " value="<?php echo $emailError; ?>">
         </div>
         <div>
         <label for="password">Парола</label>
-        <input type="password" name="password" id="password"  class="form-control <?php echo (!empty($passwordError)) ? 'invalid' : ''; ?>" value="<?php echo $passwordError; ?>">
+        <input type="password" name="password" id="password"  class="form-control " value="<?php echo $passwordError; ?>">
         </div>
         <div>
         <label for="psw-repeat">Повторете паролата</label>
-        <input type="password" name="psw-repeat" id="psw-repeat"  class="form-control <?php echo (!empty($confirmPasswordError)) ? 'invalid' : ''; ?>" value="<?php echo $confirmPasswordError; ?>">
+        <input type="password" name="psw-repeat" id="psw-repeat"  class="form-control " value="<?php echo $confirmPasswordError; ?>">
         </div>
         <div>
         <button type="submit" id ="registration_button">Регистрирай се</button>

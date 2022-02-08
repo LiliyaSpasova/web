@@ -82,6 +82,21 @@
         }
     ?>
     <form id="add_subject" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <?php if ($nameError != ''): ?>
+            <p style="color: red;">
+            <?php echo $nameError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($timeError != ''): ?>
+            <p style="color: red;">
+            <?php echo $timeError; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($typeError != ''): ?>
+            <p style="color: red;">
+            <?php echo $typeError; ?>
+            </p>
+            <?php endif; ?>
         <fieldset>
             <label for="subjectName">Име</label>
             <input type="text" id="subjectName" name="subjectName" class="form-control <?php echo (!empty($nameError)) ? 'invalid' : ''; ?>" value="<?php echo $nameError; ?>">

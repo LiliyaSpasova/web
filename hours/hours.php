@@ -57,7 +57,7 @@
         echo "<td>$groupRow[groupAdm]</td>";
         echo "<td>$groupRow[potok]</td>";
         echo "<td>$groupRow[speciality]</td>";
-        echo "<td><a href='delete_subject.php?id=".$row['sub_id']."'><i class=material-icons>delete</i></a></td>"; 
+        echo "<td><a href='delete_hour.php?sub_id=".$row['sub_id']."&group_id=".$row['group_id']."'><i class=material-icons>delete</i></a></td>"; 
         echo "</tr>";
      }
    } else {
