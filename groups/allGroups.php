@@ -10,6 +10,7 @@
 
 <body id="show_all_groups">
     
+<a href="..\index.php"><i class=material-icons>home</i></a>
 
     
 <?php

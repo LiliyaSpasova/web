@@ -17,7 +17,7 @@ $sql = "DELETE FROM teaches WHERE sub_id = $sub_id AND group_id=$group_id";
 
 if (mysqli_query($conn, $sql)) {
     mysqli_close($conn);
-    header('Location: hours.php'); //If book.php is your main page where you list your all records
+    header('Location: hours.php');
     exit;
 } else {
     echo "Error deleting record";

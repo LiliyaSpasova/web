@@ -10,6 +10,8 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="allSubjects.css">
+
+<a href="..\index.php"><i class=material-icons>home</i></a>
     <div id="initialPage">
 <?php
    $servername = "localhost";

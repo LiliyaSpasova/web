@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="hours.css">
+<a href="..\index.php"><i class=material-icons>home</i></a>
 <p style="margin: 20px; font-weight:600">Списък с нещата, които преподавате</p>
     <div id="initialPage">
 <?php
