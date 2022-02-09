@@ -361,7 +361,6 @@
 
       let building = document.getElementById('building').value;
       let lecturerName = document.getElementById('lecturerName').value;
-      debugger;
       let floor = document.getElementById('floor').value;
       let room = document.getElementById('room').value;
       let temphour = document.getElementById('saveTime').value.split(':')[0];
@@ -388,7 +387,7 @@
             courseType = jsonData[0].type;
             duration = jsonData[0].duration;
         });
-      debugger;
+        
       let rooms = document.getElementById(`${building}-${floorNum}`).childNodes;
       let free = true;
       for (elem of rooms){
@@ -454,7 +453,7 @@
           closeFormFunc();
           debugger;
           $.post("saveRoomNew.php",{b:building,f:floor,r:room,st:subjectTitle,
-          ty:courseType,l:lecturerName,s:speciality,gr:groupAdm,y:year,d:date,dur:duration},function(response){
+          ty:courseType,l:lecturerName,s:speciality,gr:groupAdm,y:year,d:date,dur:duration,s_id:subjectId,g_id:groupId},function(response){
              console.log(response);
          });
           
