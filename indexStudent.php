@@ -78,8 +78,7 @@
 
 
 
-
-
+            
 
 
             <figure id = "pop-up-room" class = "hidden">
