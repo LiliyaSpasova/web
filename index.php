@@ -8,6 +8,42 @@
     $id = $_SESSION['id'];
     $sqlForNomenclatures = "SELECT s.lecturer, s.title, s.duration, s.type from `users` u join `teaches` t on u.id = t.user_id join `subjects` s on t.sub_id = s.sub_id"; 
     $role = $_SESSION["role"];
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "schedule";
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    $sql = "SELECT subject_id, subject_name, type from subjects";
+    $result = $conn->query($sql);
+
+    $arrSubjects = [];
+    if($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($arrSubjects, [$row["subject_id"], $row["subject_name"], $row["type"]]);
+        }
+    }
+    unset($result);
+    $arrGroups = [];
+    $sql = "SELECT id, groupAdm, speciality, year from studentsgroups";
+    $result = $conn->query($sql);
+
+    if($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($arrGroups, [$row["id"], $row["speciality"], $row["year"], $row["groupAdm"]]);
+        }
+    }
+    $id = $_SESSION["id"];
+    $sql = "SELECT name from users where id=$id";
+    $name = "";
+    if($result = $conn->query($sql)) {
+        $row = $result->fetch_assoc();
+        $name = $row["name"];
+    }
+
+    if(empty($name)) {
+        $nameError = "Нещо се обърка!";
+    }
 ?>
 <!DOCTYPE html5>
 <html lang = "bg">
@@ -102,7 +138,7 @@
             <section id = 'formContainer' class = 'hidden'>
                 <section class = "darker"></section>
                 <section id = "formBackground"></section>
-                <form id = "saveRoom" method = post name = "saveRoom" action = "room.php">  
+                <form id = "saveRoom" method = post name = "saveRoom" action = "rooms.php">  
                     <section class = "coolLabel biggerTitle">Запази стая:</section>
                     <section class = "inputContainer">
                         <input id = "building" type="text" name = "building" placeholder = "Сграда">  
@@ -113,25 +149,23 @@
                         <input id = "saveDate" type="date" name = "day">  
                         <input id = "saveTime" type="time" name = "time">
                     </section>
-                    <section class = "inputContainer">
-                        <input id = "duration" type="number" name = "duration" placeholder = "Продължителност">  
-                    </section>
-                    <section class = "inputContainer">
-                        <input id = "lecturerName" type = "text" name = "lecturerName" placeholder = "Преподавател"> 
-                        <input id = "subjectTitle" type = "text" name = "subjectTitle" placeholder = "Предмет"> 
-                        <select id = "courseType" type = "text" name = "courseType">  
-                            <option value = "с">семинар</option> 
-                            <option value = "л">лекция</option> 
-                            <option value = "п">практикум</option> 
-                        </select>
-                    </section>
-                    <section class = "inputContainer">
-                        <input id = "speciality" type = "text" name = "speciality" placeholder = "Специалност"> 
-                        <input id = "year" type = "text" name = "year" placeholder = "Курс"> 
-                        <input id = "groupAdm" type = "text" name = "groupAdm" placeholder = "Група">
-                        <input id = "exam" type="checkbox" name="exam">
-                        <label for="exam">За изпит ли запазвате залата?</label>
-                    </section>
+                    <input type="text" id="lecturerName" name="lecturerName" value=<?php echo $name ?> disabled>
+                    <select id="subject" name="subject" class="form-control <?php echo (!empty($subjectError)) ? 'invalid' : ''; ?>" value="<?php echo $subjectError; ?>">
+                        <option selected="selected" value="none" style="display: none">Изберете едно:</option>
+                        <?php
+                            foreach($arrSubjects as $item){
+                                echo "<option value=$item[0]>$item[1] $item[2]</option>";
+                            }
+                        ?>
+                    </select>
+                    <select id="group" name="group" class="form-control <?php echo (!empty($groupError)) ? 'invalid' : ''; ?>" value="<?php echo $groupError; ?>">
+                        <option selected="selected" value="none" style="display: none">Изберете едно:</option>
+                        <?php
+                            foreach($arrGroups as $item){
+                                echo "<option value=$item[0]>спец: $item[1],  год: $item[2],  група: $item[3]</option>";
+                            }
+                        ?>
+                    </select>
                     <section id = "formButtons">
                         <section id = "saveForm" class = "coolButton selectedButton">Запази зала</section>
                         <section id = "closeForm" class = "coolButton selectedButton">Отказ</section>

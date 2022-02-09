@@ -1,7 +1,7 @@
 <?php
   include 'db.php';
-
-  $connection = db_connect();
+  include 'saveRoomNew.php';
+   $connection = db_connect();
 
   $buildingsStatement = "SELECT building, floors
             FROM buildings";
@@ -39,8 +39,10 @@
   $statement = "SELECT date, building, room, floor, title, type, lecturer, speciality, groupAdm, year, duration
       FROM roomTaken";
   $roomsTaken = get($connection, $statement);
-?>
 
+ 
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type = "text/javascript">
 
   let building;
@@ -50,7 +52,11 @@
   let allRoomData = getRoomData();
   let availableData = getAvailability();
 
-
+  function sleep(ms) {
+  return new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+}
   function createFloor(floors, roomTypes) {
       let map = document.getElementById('map');
       let div = document.createElement('div');
@@ -233,6 +239,7 @@
   }
 
   function closeFormFunc() {
+  
       formContainer = document.getElementById('formContainer');
       formContainer.classList.add('hidden');
       document.querySelectorAll('#saveRoom > div > input').forEach(elem => {
@@ -274,7 +281,7 @@
     let day = document.getElementById('dateInput').value;
     date =  day + ' ' + hours.substring(0, 3) + '00:00';
 
-    if(availableData[date] == null || vailableData[date][building] == null || availableData[date][building][floorNum] == null) {
+    if(availableData[date] == null || availableData[date][building] == null || availableData[date][building][floorNum] == null) {
       availableRooms = null;
     } else {
       availableRooms = availableData[date][building][floorNum];
@@ -348,21 +355,40 @@
       formContainer.appendChild(warning);
 
     let saveForm = document.getElementById('saveForm');
-    saveForm.addEventListener('click', function (event) {
+    saveForm.addEventListener('click', async function (event) {
+      let groupId = document.getElementById('group').value;
+      let subjectId = document.getElementById('subject').value;
+
       let building = document.getElementById('building').value;
+      let lecturerName = document.getElementById('lecturerName').value;
+      debugger;
       let floor = document.getElementById('floor').value;
       let room = document.getElementById('room').value;
       let temphour = document.getElementById('saveTime').value.split(':')[0];
       let tempday = document.getElementById('saveDate').value;
       let date = tempday+ ' ' + temphour + ':00:00';
-      let duration = document.getElementById('duration').value;
-      let lecturerName = document.getElementById('lecturerName').value;
-      let subjectTitle = document.getElementById('subjectTitle').value;
-      let courseType = document.getElementById('courseType').value;
-      let speciality = document.getElementById('speciality').value;
-      let year = document.getElementById('year').value;
-      let groupAdm = document.getElementById('groupAdm').value;
       
+      let subjectTitle = "";
+      let courseType = "";
+      let duration = "";
+
+      let speciality ="";
+      let year = "";
+      let groupAdm = "";
+
+        await $.post('getGroupData.php', {'gr_id' : groupId}, function(data){
+            var jsonData = JSON.parse(data); 
+            groupAdm=jsonData[0].groupAdm;
+            speciality =decodeURIComponent(jsonData[0].speciality);
+            year=jsonData[0].year;
+        });
+        await $.post('getSubjectData.php', {'sub_id' : subjectId}, function(data){
+            var jsonData = JSON.parse(data);       
+            subjectTitle = decodeURIComponent(jsonData[0].subject_name);
+            courseType = jsonData[0].type;
+            duration = jsonData[0].duration;
+        });
+      debugger;
       let rooms = document.getElementById(`${building}-${floorNum}`).childNodes;
       let free = true;
       for (elem of rooms){
@@ -374,8 +400,7 @@
       }
       
 
-      if (!free || building == '' || floor == '' || room == '' || temphour == '' || date == '' || duration == '' || lecturerName == '' ||
-        subjectTitle == '' || courseType == '' || speciality == '' || year == '' || groupAdm == '') {
+      if (!free || building == '' || floor == '' || room == '' || temphour == '' || date == '' || groupId == '' || subjectId == '' ) {
           document.getElementById('warning').classList.remove('hidden');
         }
       else {
@@ -416,6 +441,7 @@
               availableData[temph][building][floor] = {};
             }
             availableData[temph][building][floor][room] = availableData[date][building][floor][room];
+            
           }
 
           selectFloor(date);
@@ -426,23 +452,14 @@
             }
           })
           closeFormFunc();
+          debugger;
+          $.post("saveRoomNew.php",{b:building,f:floor,r:room,st:subjectTitle,
+          ty:courseType,l:lecturerName,s:speciality,gr:groupAdm,y:year,d:date,dur:duration},function(response){
+             console.log(response);
+         });
+          
       }
-
-      
-
-  	
-      let php = `<?php 
-        $insertStatement = "INSERT INTO roomTaken VALUES (:b, :r, :f, :t, :ty, :l, :s, :g, :y, :date, :d)";
-        if($_POST) {
-          $query = $connection->prepare($insertStatement);
-          $tempdate = $_POST["saveDate"] . ' ' .  $_POST["saveTime"];
-          $query->execute(['b' => $_POST['building'], 'r' => $_POST['room'],'f' => $_POST['floor'], 't' => $_POST['subjectTitle'],
-                    'ty' => $_POST['courseType'], 'l' => $_POST['lecturerName'], 's' => $_POST['speciality'],
-                    'g' => $_POST['groupAdm'],'y' => $_POST['year'], 'date' => $tempdate, 'd' => $_POST['duration']]) or die('failed');
-        }
-      ?>`;
-      
-    })
+  })
 
     
 
