@@ -14,7 +14,7 @@
     }
     $group_id = $row["group_id"];
 
-    $sql = "SELECT r.building, r.floor, r.room, r.title, r.duration from roomtaken r join studentsgroups g on r.group_id = $group_id";
+    $sql = "SELECT r.building, r.floor, r.room, r.title, r.duration, r.date from roomtaken r join studentsgroups g on r.group_id = $group_id";
     $result = $conn->query($sql);
     $arrOfClasses = [];
     while(($row = $result->fetch_assoc()) != false) {
@@ -23,7 +23,8 @@
         $room = $row["room"];
         $courseName = $row["title"];
         $duration = $row["duration"];
-        array_push($arrOfClasses, [$building, $floor, $room, $courseName, $duration]);
+        $date = $row["date"];
+        array_push($arrOfClasses, [$building, $floor, $room, $courseName, $date, $duration]);
     }
     
     $conn->close();
@@ -53,6 +54,7 @@
         echo "<td>Етаж</td>";
         echo "<td>Стая</td>";
         echo "<td>Предмет</td>";
+        echo "<td>Дата и час на започване</td>";
         echo "<td>Продължителност</td>";
         echo "</tr>";
    if (count($arrOfClasses) > 0) {
@@ -63,6 +65,7 @@
         echo "<td>$row[2]</td>";
         echo "<td>$row[3]</td>";
         echo "<td>$row[4]</td>";
+        echo "<td>$row[5]</td>";
         echo "</tr>";
      }
    } else {

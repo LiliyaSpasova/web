@@ -14,7 +14,7 @@
     $dbname = "schedule";
     
     $conn = new mysqli($servername, $username, $password, $dbname);
-    $sql = "SELECT subject_id, subject_name, type from subjects";
+    $sql = "SELECT subject_id, subject_name, type from subjects s join teaches t on t.sub_id = s.subject_id JOIN users u on u.id = t.user_id where u.id = $id";
     $result = $conn->query($sql);
 
     $arrSubjects = [];
@@ -25,7 +25,7 @@
     }
     unset($result);
     $arrGroups = [];
-    $sql = "SELECT id, groupAdm, speciality, year from studentsgroups";
+    $sql = "select u.id, groupAdm, speciality, year from users u join teaches t on u.id = t.user_id join studentsgroups sg on t.group_id = sg.id where u.id=$id";
     $result = $conn->query($sql);
 
     if($result->num_rows > 0) {
@@ -101,8 +101,6 @@
 
 
 
-
-
             <nav id="pointToPoint">
                 <section class="dropdown">
                     <button onclick="fC()" class="dropbtn"><?php echo "$user"?>
@@ -112,18 +110,11 @@
                         <a href="hours\hours.php">Моите часове</a>
                         <a href="groups\allGroups.php">Групи</a>
                         <a href="subjects\allSubjects.php">Предмети</a>
-                        <a href="settings.php">Настройки и предпочитания</a>
                     </section>
                 </section>  
             <a style="padding: 10px;"href="logout.php"><i style="background-color:white; padding:5px"class=material-icons>logout</i></a>
             <a style="padding: 10px;"href="importStudents.php"><i style="background-color:white; padding:5px"class=material-icons>attachment</i></a>
             </nav>
-
-
-
-
-
-
 
 
             <figure id = "pop-up-room" class = "hidden">

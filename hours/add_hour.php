@@ -122,7 +122,7 @@
                 }
             ?>
         </select>
-        <input type="submit" value="Submit" id="submit_button">
+        <input type="submit" value="Запиши" id="submit_button">
         </fieldset>
     </form>
 </body>

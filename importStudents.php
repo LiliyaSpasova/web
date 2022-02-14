@@ -45,7 +45,7 @@
 
     function inputAccounts($data, $groupId){
         try {
-            $sql = "INSERT into users (username, password, email, role_id, name) values (:username, :password, :email, 2, :name)";
+            $sql = "INSERT into users (username, password, email, role_id, name, is_approved) values (:username, :password, :email, 2, :name, true)";
             require_once("config.php");
 
             foreach($data as $val) {

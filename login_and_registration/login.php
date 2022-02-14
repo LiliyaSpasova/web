@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if(empty($usernameError) && empty($passwordError)){
 
-        $sql = "SELECT id, username, password, role_id FROM users WHERE username = :username";
+        $sql = "SELECT id, username, password, role_id, is_approved FROM users WHERE username = :username";
         
         if($stmt = $pdo->prepare($sql)){
 
@@ -48,27 +48,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $username = $row["username"];
                         $hashed_password = $row["password"];
                         $role = $row["role_id"];
+                        $is_approved = $row["is_approved"];
                         if(password_verify($password, $hashed_password)){
-                            session_start();
+                            if ($is_approved == 1) {
+                                session_start();
                             
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;       
-                            $_SESSION["role"] = $role;
+                                $_SESSION["loggedin"] = true;
+                                $_SESSION["id"] = $id;
+                                $_SESSION["username"] = $username;       
+                                $_SESSION["role"] = $role;
 
-                            if ($_SESSION["role"] == 0 || $_SESSION["role"] == 1) {
-                                header("location: ..\index.php");
+                                if ($_SESSION["role"] == 0 || $_SESSION["role"] == 1) {
+                                    header("location: ..\index.php");
+                                }
+                                else {
+                                    header("location: ..\indexStudent.php");
+                                }
                             }
                             else {
-                                header("location: ..\indexStudent.php");
+                                header("location: ..\\notApproved.php");
                             }
 
                         } else{
-                            $loginError = "asd.";
+                            $loginError = "Грешно потребителско име или парола, опитай отново!";
                         }
                     }
                 } else{
-                    $loginError = "bsd.";
+                    $loginError = "Грешка при обработка, има два акаунта с подобна информация.";
                 }
             } else{
                 echo "Грешката е при нас. Моля опитайте по-късно.";
