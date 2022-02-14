@@ -81,7 +81,7 @@
             </p>
             <?php endif; ?>
             <?php if ($groupError != ''): ?>
-            <p style="color: groupError;">
+            <p style="color: red;">
             <?php echo $groupError; ?>
             </p>
             <?php endif; ?>
@@ -93,15 +93,15 @@
         <fieldset>
             <section>
             <label for="degreeName">Име на специалност:</label>
-            <input type="text" id="degreeName" name="degreeName" class="form-control <?php echo (!empty($degreeError)) ? 'invalid' : ''; ?>" value="<?php echo $degreeError; ?>">
+            <input type="text" id="degreeName" name="degreeName">
             </section>
             <label for="course">Курс (от 1-ви до 4-ти)</label>
             <section>
-            <input type="number" id="course" name="course" min="1" max="4" class="form-control <?php echo (!empty($courseError)) ? 'invalid' : ''; ?>" value="<?php echo $courseError; ?>">
+            <input type="number" id="course" name="course" min="1" max="4">
             <label for="courseGroup">Поток</label>
             </section>
             <section>
-            <select id="courseGroup" name="courseGroup" class="form-control <?php echo (!empty($courseGroupError)) ? 'invalid' : ''; ?>" value="<?php echo $courseGroupError; ?>">
+            <select id="courseGroup" name="courseGroup">
                 <option value="none" style="display: none">Изберете потока, от който сте:</option>
                 <option value="1">Първи</option>
                 <option value="2">Втори</option>
@@ -109,11 +109,11 @@
             </section>
             <section>
             <label for="group">Група:</label>
-            <input type="number" id="group" name="group" min="1" max="8" class="form-control <?php echo (!empty($groupError)) ? 'invalid' : ''; ?>" value="<?php echo $groupError; ?>">
+            <input type="number" id="group" name="group" min="1" max="8">
             </section>
             <section>
             <label for="group">Приблизителен брой студенти:</label>
-            <select id="numStudents" name="numStudents" class="form-control <?php echo (!empty($numStudentsError)) ? 'invalid' : ''; ?>" value="<?php echo $numStudentsError; ?>">
+            <select id="numStudents" name="numStudents">
                 <option value="none" style="display:none">Изберете едно</option>
                 <option value="10">10</option>
                 <option value="20">20</option>

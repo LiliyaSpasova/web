@@ -74,9 +74,6 @@
     <?php
         session_start();
         if ($_SESSION["role"] != 0) {
-            echo '<script type="text/javascript">';
-            echo ' alert("Нямате достъп до тази страница!")';
-            echo '</script>';
             header('Location: ../index.php');
             exit;
         }
@@ -99,11 +96,11 @@
             <?php endif; ?>
         <fieldset>
             <label for="subjectName">Име</label>
-            <input type="text" id="subjectName" name="subjectName" class="form-control <?php echo (!empty($nameError)) ? 'invalid' : ''; ?>" value="<?php echo $nameError; ?>">
+            <input type="text" id="subjectName" name="subjectName">
             <label for="duration">Времетраене (между 1 и 5 часа)</label>
-            <input type="number" id="duration" name="duration" min="1" max="5" class="form-control <?php echo (!empty($timeError)) ? 'invalid' : ''; ?>" value="<?php echo $timeError; ?>">
+            <input type="number" id="duration" name="duration" min="1" max="5">
             <label for="subjectType">Вид на урока</label>
-            <select id="subjectType" name="subjectType" class="form-control <?php echo (!empty($typeError)) ? 'invalid' : ''; ?>" value="<?php echo $typeError; ?>">
+            <select id="subjectType" name="subjectType">
                 <option value="none" style="display: none">Изберете един от видовете:</option>
                 <option value="л">Лекция</option>
                 <option value="у">Упражнение</option>

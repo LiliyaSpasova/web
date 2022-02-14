@@ -9,12 +9,9 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    if(mysqli_num_rows($result) == 0) {
-        die("Има грешка в профила Ви, свържете се с Отдел Студенти.");
-    }
     $group_id = $row["group_id"];
 
-    $sql = "SELECT r.building, r.floor, r.room, r.title, r.duration, r.date from roomtaken r join studentsgroups g on r.group_id = $group_id";
+    $sql = "SELECT r.building, r.floor, r.room, r.title, r.duration, r.date from roomtaken r join teaches t on t.group_id = r.group_id join users u on t.user_id = u.id where u.id = $userid and now() < (SELECT DATE_ADD(r.date, INTERVAL r.duration HOUR))";
     $result = $conn->query($sql);
     $arrOfClasses = [];
     while(($row = $result->fetch_assoc()) != false) {
@@ -35,14 +32,13 @@
 <head>
 
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="/hours/hours.css">
+<link rel="stylesheet" href="StudentHours.css">
   
 <title>Програма</title>
 </head>
 
-<body>
+<body style="background-image:url(img/light_green_background.jpg)">
 <a href="indexStudent.php"><i class=material-icons>home</i></a>
 <p style="margin: 20px; font-weight:600">Списък с предмети, които предстоят:</p>
     <div id="initialPage">
@@ -68,8 +64,6 @@
         echo "<td>$row[5]</td>";
         echo "</tr>";
      }
-   } else {
-     echo "0 results";
    }
 ?>
 </div>

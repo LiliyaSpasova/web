@@ -105,7 +105,7 @@
         <label for="name">Вашето име:</label>
         <input type="text" id="name" name="name" value=<?php echo $name ?> disabled>
         <label for="subject">Изберете предмет и тип урок</label>
-        <select id="subject" name="subject" class="form-control <?php echo (!empty($subjectError)) ? 'invalid' : ''; ?>" value="<?php echo $subjectError; ?>">
+        <select id="subject" name="subject">
             <option selected="selected" value="none" style="display: none">Изберете едно:</option>
             <?php
                 foreach($arrSubjects as $item){
@@ -114,7 +114,7 @@
             ?>
         </select>
         <label for="group">Изберете специалност и група, на която ще преподавате</label>
-        <select id="group" name="group" class="form-control <?php echo (!empty($groupError)) ? 'invalid' : ''; ?>" value="<?php echo $groupError; ?>">
+        <select id="group" name="group">
             <option selected="selected" value="none" style="display: none">Изберете едно:</option>
             <?php
                 foreach($arrGroups as $item){

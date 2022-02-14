@@ -30,7 +30,7 @@
      die("Connection failed: " . $conn->connect_error);
    }
    
-   $sql = "SELECT sub_id, group_id  FROM teaches where user_id=$userId";
+   $sql = "SELECT sub_id, group_id FROM teaches where user_id=$userId";
    $result = $conn->query($sql);
    echo "<table >";
         echo "<tr>";
@@ -45,10 +45,10 @@
    if ($result->num_rows > 0) {
      // output data of each row
      while($row = $result->fetch_assoc()) {
-        $getSubData = "SELECT subject_name,type  FROM subjects where subject_id=$row[sub_id]";
+        $getSubData = "SELECT subject_name, type FROM subjects where subject_id = $row[sub_id]";
         $resSub = $conn->query($getSubData);
         $subRow = $resSub->fetch_assoc();
-        $getGroupData = "SELECT groupAdm,potok,speciality  FROM studentsGroups where id=$row[group_id]";
+        $getGroupData = "SELECT groupAdm, potok, speciality FROM studentsGroups where id = $row[group_id]";
         $resGroup = $conn->query($getGroupData);
         $groupRow = $resGroup->fetch_assoc();
         echo "<tr>";
@@ -61,11 +61,8 @@
         echo "<td><a href='delete_hour.php?sub_id=".$row['sub_id']."&group_id=".$row['group_id']."'><i class=material-icons>delete</i></a></td>"; 
         echo "</tr>";
      }
-   } else {
-     echo "0 results";
    }
    $conn->close();
-  
 ?> 
 
 <p style="margin: 20px; font-weight:600">Ако искате да добавите нов елемент,<a href=add_hour.php>натиснете тук.</a></p>
