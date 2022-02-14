@@ -68,7 +68,7 @@
                     <button onclick="fC()" class="dropbtn"><?php echo "$user"?>
                     </button>
                     <section id="myDropdown" class="dropdown-content">
-                        <a href="profile.php">Профил</a>
+                        <a href="profileStudent.php">Профил</a>
                         <a href="studentHours.php">Моите часове</a>
                     </section>
                 </section>  

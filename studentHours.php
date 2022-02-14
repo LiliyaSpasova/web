@@ -43,7 +43,7 @@
 </head>
 
 <body>
-<a href="..\index.php"><i class=material-icons>home</i></a>
+<a href="indexStudent.php"><i class=material-icons>home</i></a>
 <p style="margin: 20px; font-weight:600">Списък с предмети, които предстоят:</p>
     <div id="initialPage">
 <?php

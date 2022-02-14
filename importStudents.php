@@ -31,8 +31,6 @@
                 $username = strtolower($username);
                 $name = $val[0];
                 $email = $username . "@uni-sofia.bg";
-                echo $username;
-                echo $val[2];
                 $password = password_hash($val[2], PASSWORD_DEFAULT);
                 array_push($all_data, [$username, $password, $email, $name]);
             }
@@ -175,6 +173,7 @@
 </head>
 
 <body>
+    <a href="index.php"><i class=material-icons>home</i></a>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
     <fieldset>
         <label for="group">Изберете специалност и група, в която искате да сложите студентите</label>
