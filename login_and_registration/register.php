@@ -69,8 +69,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
-            $accept_link = "localhost:8080/web_project/login_and_registration/approve.php?e=" . $username . "&h=" . hash('sha512', 'ACCEPT');
-            $decline_link = "localhost:8080/web_project/login_and_registration/approve.php?e="  . $username . "&h=" . hash('sha512', 'DECLINE');
+            $accept_link = "localhost:80/web_project/login_and_registration/approve.php?e=" . $username . "&h=" . hash('sha512', 'ACCEPT');
+            $decline_link = "localhost:80/web_project/login_and_registration/approve.php?e="  . $username . "&h=" . hash('sha512', 'DECLINE');
             $mail = new PHPMailer();
             $mail->IsSMTP();
             $mail->Mailer = "smtp";
@@ -82,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $mail->Username   = "emailapprovalswebproject@gmail.com";
             $mail->Password   = "dveteBubi1";
             $mail->IsHTML(false);
-            $mail->AddAddress("lilly_spasova@abv.bg", "Liliya");
+            $mail->AddAddress("emailapprovalswebproject@gmail.com", "Liliya");
             $mail->SetFrom("emailapprovalswebproject@gmail.com", "Web project");
             $mail->Subject = "User needs approval";
             $content = "The user'. $param_username. ' needs your approval" .
